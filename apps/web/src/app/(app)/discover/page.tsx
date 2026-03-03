@@ -1,43 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
-export const dynamic = "force-dynamic";
+import { getNeighborhoodHref, neighborhoods } from "./neighborhood-data";
 
-const neighborhoods = [
-  {
-    name: "Temescal",
-    city: "Oakland, CA",
-    story:
-      "We wave at each other on morning walks. The farmers market on Sundays is where we all catch up. Kids ride bikes until the streetlights come on.",
-    storyCount: 8,
-    tags: ["Walkable", "Community gardens", "Family-friendly"],
-  },
-  {
-    name: "Sellwood",
-    city: "Portland, OR",
-    story:
-      "Every block has a little free library. The antique shops have been here longer than most of us. You can walk to the river in ten minutes.",
-    storyCount: 12,
-    tags: ["Yard-friendly", "Walkable", "Local shops"],
-  },
-  {
-    name: "Bernal Heights",
-    city: "San Francisco, CA",
-    story:
-      "The hill is our living room. On clear days you can see both bridges. Neighbors leave lemons on each other's stoops. It's a village inside a city.",
-    storyCount: 15,
-    tags: ["Quiet streets", "Close to nature", "Diverse community"],
-  },
-  {
-    name: "Montrose",
-    city: "Houston, TX",
-    story:
-      "This is where Houston gets weird — in the best way. Murals everywhere, front-yard art installations, and a coffee shop on every corner.",
-    storyCount: 6,
-    tags: ["Arts & culture", "Diverse community", "Walkable"],
-  },
-];
+export const dynamic = "force-dynamic";
 
 export default function DiscoverPage() {
   const [selectedPrefs, setSelectedPrefs] = useState<string[]>([]);
@@ -112,8 +80,10 @@ export default function DiscoverPage() {
       {/* Neighborhood cards */}
       <div className="grid md:grid-cols-2 gap-6">
         {filteredNeighborhoods.map((n) => (
-          <div
+          <Link
             key={n.name}
+            href={getNeighborhoodHref(n.name)}
+            aria-label={`Explore neighborhood: ${n.name}`}
             className="bg-white rounded-2xl p-8 shadow-soft border border-charcoal-50 hover:shadow-soft-lg transition-shadow group cursor-pointer"
           >
             {/* Warm accent bar */}
@@ -154,7 +124,7 @@ export default function DiscoverPage() {
                 Explore neighborhood
               </span>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       {filteredNeighborhoods.length === 0 ? (

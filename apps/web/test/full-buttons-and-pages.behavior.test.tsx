@@ -80,6 +80,10 @@ describe('HumanHomes web: full page/button behavior coverage', () => {
     expect(screen.getByText('Sellwood')).toBeInTheDocument();
     expect(screen.getByText('Bernal Heights')).toBeInTheDocument();
     expect(screen.getByText('Montrose')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Explore neighborhood: Temescal' })).toHaveAttribute(
+      'href',
+      '/discover/temescal',
+    );
 
     fireEvent.click(screen.getByRole('button', { name: 'Diverse community' }));
 

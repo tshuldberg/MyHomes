@@ -48,3 +48,15 @@
 - Add a `.env` setup for local API runtime (`DATABASE_URL`, `CLERK_SECRET_KEY`) and verify API health endpoint on startup.
 - Decide whether root `pnpm dev` should be fail-fast when API env vars are missing, or allow web/mobile to continue while API retries.
 - Silence the Next.js workspace-root warning by setting `turbopack.root` in web config.
+
+## 2026-03-02 - Discover Neighborhood Navigation Fix
+
+### Entry 3.1 - `/discover` CTA Routing
+**Phase:** Web App / UX Bug Fix
+**What happened:** Fixed the non-functional `Explore neighborhood` action on `/discover` by converting each neighborhood card into a real link and adding a matching dynamic detail route.
+**Decision:** Use slug-based URLs (`/discover/[slug]`) so card navigation is stable, readable, and testable. Extract shared neighborhood data into a single module used by both the list page and detail page to avoid data drift.
+**Files created/modified:** `apps/web/src/app/(app)/discover/page.tsx`, `apps/web/src/app/(app)/discover/neighborhood-data.ts`, `apps/web/src/app/(app)/discover/[slug]/page.tsx`, `apps/web/test/full-buttons-and-pages.behavior.test.tsx`, `timeline.md`
+
+### Verification
+- `pnpm --filter @humanhomes/web test -- test/full-buttons-and-pages.behavior.test.tsx`
+- `pnpm --filter @humanhomes/web test -- test/pages-and-data-loads.test.tsx`
