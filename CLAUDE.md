@@ -34,10 +34,17 @@ HumanHomes is a full real estate operating system that democratizes homeownershi
 - New runtime code should be .ts/.tsx with strict typing and no implicit any.
 - Use .js/.cjs only where required by tooling or platform constraints.
 
+## Standalone And Hub Module Parity (Critical)
+
+- `MyHomes` is the canonical product source while it remains an active standalone workspace.
+- `modules/homes` is a hub adapter and partial migration surface, not a full representation of the HumanHomes platform.
+- Do not describe hub parity as complete unless the API, auth, chat, video, jobs, maps, and marketplace scope have been verified in the hub.
+- When parity or archival status changes, update both `AGENTS.md` and `CLAUDE.md` in the same session.
+
 ## Agent Instructions and Tooling
 
 - Persistent agent instructions are stored in both `AGENTS.md` and `CLAUDE.md`. Keep them in sync when rules change.
-- Global Codex skills are sourced from `/Users/trey/.codex/skills` (67 skills verified on 2026-02-24).
+- Global Codex skills are sourced from `/Users/trey/.codex/skills`.
 - In-repo skill snapshot is tracked in `.claude/skills-available.md`.
 - Plugin/MCP availability and re-verification steps are tracked in `.claude/plugins.md`.
 - Local execution allow-list settings live in `.claude/settings.local.json`.

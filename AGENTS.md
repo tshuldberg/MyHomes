@@ -20,21 +20,22 @@ Project-specific agent instructions for `/Users/trey/Desktop/Apps/MyLife/MyHomes
 - For new product/runtime code, prefer .ts/.tsx over .js/.jsx.
 - Use JavaScript only when a toolchain file requires it (for example Babel or Metro config).
 
+## Standalone And Hub Module Parity (Critical)
+
+- `MyHomes` is the canonical product source while it remains an active standalone workspace.
+- `modules/homes` is a hub adapter and partial migration surface, not a full representation of the HumanHomes platform.
+- Do not describe hub parity as complete unless the API, auth, chat, video, jobs, maps, and marketplace scope have been verified in the hub.
+- When parity or archival status changes, update both `AGENTS.md` and `CLAUDE.md` in the same session.
+
 ## Skills Availability
 
 - Skills are sourced from the global Codex skills directory: `/Users/trey/.codex/skills`.
-- Verified on 2026-02-24: 67 skills with `SKILL.md` are available (including `.system/*` skills).
-- Verify current availability with:
-  - `find /Users/trey/.codex/skills -maxdepth 3 -name 'SKILL.md' | wc -l`
-  - `find /Users/trey/.codex/skills -maxdepth 3 -name 'SKILL.md'`
 - Do not assume `.claude/skills` exists in this repo unless explicitly added later.
+- Check the shared skills directory directly if availability needs re-verification.
 
 ## Plugins / MCP Availability
 
-- Confirmed working in this workspace on 2026-02-24:
-  - `figma` MCP server (authenticated user: `trey.shuldberg@gmail.com`)
-  - `openaiDeveloperDocs` MCP server tools
-- Canonical inventory lives in `.claude/plugins.md`.
+- See `.claude/plugins.md` for the current verified inventory and re-verification steps.
 
 ## Agent Teams
 
